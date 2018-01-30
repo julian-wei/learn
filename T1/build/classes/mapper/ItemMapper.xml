@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.wj.dao.ItemDao">
+    <!--
+        获取用户: 输出直接映射到对象, school_name列要"as schoolName"以方便映射
+    -->
+    <select id="get" parameterType="integer" resultType="Item">
+        select id, username,
+        school_name as schoolName
+        from public.item
+        where id=#{id}
+    </select>
+    
+    <insert id="save" parameterType="com.wj.entity.Item"  >
+    	INSERT INTO public.item (id, username, school_name)
+		VALUES (#{id}, #{username}, #{schoolName})
+    </insert>
+
+</mapper>
